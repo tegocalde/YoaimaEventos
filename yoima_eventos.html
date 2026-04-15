@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Yoima Eventos – Decoración de Eventos</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --pink:       #D4537E;
+      --pink-light: #FBEAF0;
+      --pink-dark:  #993556;
+      --teal:       #1D9E75;
+      --teal-light: #E1F5EE;
+      --teal-dark:  #0F6E56;
+      --gold:       #BA7517;
+      --gold-light: #FAEEDA;
+    }
+
+    * { box-sizing: border-box; }
+    body { font-family: 'Nunito', sans-serif; color: #333; overflow-x: hidden; }
+
+    /* ── NAV ── */
+    .navbar { background: #fff; box-shadow: 0 2px 12px rgba(212,83,126,.10); }
+    .navbar-brand { font-family: 'Pacifico', cursive; font-size: 1.6rem; }
+    .navbar-brand .pink  { color: var(--pink); }
+    .navbar-brand .teal  { color: var(--teal); }
+    .nav-link { color: #555 !important; font-weight: 600; transition: color .2s; }
+    .nav-link:hover { color: var(--pink) !important; }
+    .btn-cotizar {
+      background: var(--pink); color: #fff !important; border-radius: 999px;
+      padding: .45rem 1.4rem; font-weight: 700; transition: background .2s;
+    }
+    .btn-cotizar:hover { background: var(--pink-dark); }
+
+    /* ── HERO ── */
+    .hero-section {
+      
+      /* background: linear-gradient(135deg, #FFF0F6 0%, #E8F8F3 100%); */
+      padding: 5rem 0 4rem;
+    }
+    .hero-section h1 { font-family: 'Pacifico', cursive; font-size: clamp(2rem,4vw,3.2rem); line-height: 1.25; }
+    .hero-section h1 .pink { color: var(--pink); }
+    .hero-section h1 .teal { color: var(--teal); }
+    .hero-section p.lead { color: #555; font-size: 1.1rem; line-height: 1.8; }
+    .hero-logo { filter: drop-shadow(0 8px 28px rgba(212,83,126,.20)); max-width: 360px; width: 100%; }
+    .btn-pink {
+      background: var(--pink); color: #fff; border-radius: 999px;
+      padding: .75rem 2rem; font-weight: 700; font-size: 1rem; border: none;
+      transition: background .2s, transform .15s;
+    }
+    .btn-pink:hover { background: var(--pink-dark); color: #fff; transform: translateY(-1px); }
+    .btn-outline-teal {
+      border: 2px solid var(--teal); color: var(--teal); border-radius: 999px;
+      padding: .7rem 1.9rem; font-weight: 700; font-size: 1rem; background: transparent;
+      transition: background .2s, color .2s;
+    }
+    .btn-outline-teal:hover { background: var(--teal); color: #fff; }
+
+    /* ── BADGE strip ── */
+    .badge-strip { background: var(--pink); }
+    .badge-strip .badge-item {
+      color: #fff; font-weight: 600; font-size: .95rem;
+      display: flex; align-items: center; gap: .5rem;
+    }
+
+    /* ── SECTION COMMON ── */
+    .section-tag {
+      display: inline-block; background: var(--pink-light); color: var(--pink);
+      font-weight: 700; font-size: .8rem; letter-spacing: .08em; text-transform: uppercase;
+      border-radius: 999px; padding: .3rem 1rem; margin-bottom: .75rem;
+    }
+    .section-tag.teal { background: var(--teal-light); color: var(--teal-dark); }
+    .section-title { font-family: 'Pacifico', cursive; font-size: clamp(1.6rem,3vw,2.4rem); }
+    .section-sub { color: #666; font-size: 1rem; }
+
+    /* ── SERVICES ── */
+    .service-card {
+      border: none; border-radius: 1.25rem;
+      box-shadow: 0 4px 20px rgba(0,0,0,.06);
+      transition: transform .25s, box-shadow .25s;
+      height: 100%;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 10px 32px rgba(212,83,126,.15); }
+    .service-icon-wrap {
+      width: 64px; height: 64px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.7rem; margin: 0 auto 1rem;
+    }
+
+    /* ── WHY US ── */
+    .why-section { background: linear-gradient(135deg,#E8F8F3,#FFF0F6); }
+    .why-card { border-left: 4px solid var(--teal); border-radius: .75rem; background: #fff; }
+    .why-num {
+      font-family: 'Pacifico', cursive; font-size: 2.5rem;
+      color: var(--pink-light); line-height: 1;
+    }
+
+    /* ── GALLERY ── */
+    .gallery-item {
+      border-radius: 1.25rem; overflow: hidden;
+      aspect-ratio: 1; display: flex; align-items: center;
+      justify-content: center; font-size: 3.5rem;
+      transition: transform .25s;
+    }
+    .gallery-item:hover { transform: scale(1.04); }
+
+    /* ── TESTIMONIALS ── */
+    .testimonial-card { border: none; border-radius: 1.25rem; box-shadow: 0 4px 20px rgba(0,0,0,.06); }
+    .stars { color: var(--gold); font-size: 1rem; }
+    .avatar-circle {
+      width: 46px; height: 46px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 700; font-size: .95rem; flex-shrink: 0;
+    }
+
+    /* ── CONTACT ── */
+    .contact-section { background: linear-gradient(135deg,#FFF0F6,#E8F8F3); border-radius: 2rem; }
+    .contact-icon-wrap {
+      width: 40px; height: 40px; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; flex-shrink: 0;
+    }
+    .form-control, .form-select {
+      border-radius: .75rem; border: 1.5px solid #e0e0e0;
+      padding: .65rem 1rem; font-family: 'Nunito', sans-serif;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    .form-control:focus, .form-select:focus {
+      border-color: var(--pink); box-shadow: 0 0 0 3px rgba(212,83,126,.15);
+    }
+    .btn-submit {
+      background: var(--pink); color: #fff; border: none; border-radius: 999px;
+      padding: .8rem; font-weight: 700; font-size: 1rem; width: 100%;
+      transition: background .2s; cursor: pointer;
+    }
+    .btn-submit:hover { background: var(--pink-dark); }
+
+    /* ── FOOTER ── */
+    footer { background: #2C2C2A; color: #ccc; }
+    footer .footer-brand { font-family: 'Pacifico', cursive; font-size: 1.5rem; }
+    footer .footer-brand .pink { color: var(--pink); }
+    footer .footer-brand .teal { color: var(--teal); }
+    footer a { color: #aaa; text-decoration: none; transition: color .2s; }
+    footer a:hover { color: var(--pink); }
+    .social-btn {
+      width: 38px; height: 38px; border-radius: 50%;
+      display: inline-flex; align-items: center; justify-content: center;
+      background: rgba(255,255,255,.1); color: #fff; font-size: 1rem;
+      transition: background .2s;
+    }
+    .social-btn:hover { background: var(--pink); color: #fff; }
+
+    /* ── WHATSAPP FLOAT ── */
+    .wa-float {
+      position: fixed; bottom: 1.5rem; right: 1.5rem; z-index: 999;
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #25D366; color: #fff; font-size: 1.6rem;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 4px 16px rgba(0,0,0,.25); text-decoration: none;
+      transition: transform .2s;
+    }
+    .wa-float:hover { transform: scale(1.1); color: #fff; }
+
+    @media (max-width: 576px) {
+      .hero-section { padding: 3rem 0 2.5rem; text-align: center; }
+      .hero-logo { max-width: 220px; }
+    }
+
+      .logo{
+        width: 170px;
+        height: 100px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+      }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg sticky-top">
+  <div class="container">
+
+    <a class="navbar-brand" href="#">
+    <!--<span class="pink">Yoima</span> <span class="teal">Eventos</span>--> 
+     <div class="logo" > <img src="img/logo.png" alt="Logo" style="width: 100%; height: 100%; object-fit: cover;"></div>
+    </a>
+    <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav ms-auto align-items-lg-center gap-lg-2 mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="#servicios">Servicios</a></li>
+        <li class="nav-item"><a class="nav-link" href="#galeria">Galería</a></li>
+        <li class="nav-item"><a class="nav-link" href="#testimonios">Reseñas</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contacto">Contacto</a></li>
+        <li class="nav-item ms-lg-2">
+          <a class="nav-link btn-cotizar" href="#contacto">Cotizar ahora</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero-section">
+  <div class="container">
+    
+    <div class="row align-items-center g-5">
+      
+      <div class="col-lg-6">
+        
+        <h1 class="mb-3">
+
+          Hacemos tus<br>
+          <span class="pink">momentos especiales</span><br>
+          <span class="teal">inolvidables</span>
+        </h1>
+        <p class="lead mb-4">
+          Decoración personalizada para bodas, bautizos, cumpleaños, revelación de sexo y más. Cada detalle, con amor y creatividad.
+        </p>
+        <div class="d-flex flex-wrap gap-3">
+          <a href="#contacto" class="btn-pink">Solicitar cotización</a>
+          <a href="#servicios" class="btn-outline-teal">Ver servicios</a>
+        </div>
+      </div>
+      <div class="col-lg-6 text-center">
+          <img src="img/revelacion de sexo.png" alt="Yoima Eventos class="hero-bg" style="position:absolute; top:0; left:0; width:100%; height:100%; object-fit:cover; opacity:0.15; z-index:-1;" />
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BADGE STRIP -->
+<div class="badge-strip py-3">
+  <div class="container">
+    <div class="row g-3 justify-content-center text-center">
+      <div class="col-6 col-md-3">
+        <div class="badge-item justify-content-center"><i class="bi bi-stars"></i> +500 eventos realizados</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="badge-item justify-content-center"><i class="bi bi-heart-fill"></i> 100% personalizado</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="badge-item justify-content-center"><i class="bi bi-clock-fill"></i> Entrega puntual</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="badge-item justify-content-center"><i class="bi bi-gem"></i> Materiales premium</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="py-5" id="servicios">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-tag">Lo que hacemos</span>
+      <h2 class="section-title">Nuestros servicios</h2>
+      <p class="section-sub">Llevamos magia a cada tipo de celebración</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-sm-6 col-lg-4">
+        <div class="card service-card p-4 text-center">
+          <div class="service-icon-wrap" style="background:#FBEAF0;">💍</div>
+          <h5 class="fw-bold mb-2">Bodas</h5>
+          <p class="text-muted small mb-0">Decoración romántica y elegante para el día más importante de tu vida.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="card service-card p-4 text-center">
+          <div class="service-icon-wrap" style="background:#E1F5EE;">👼</div>
+          <h5 class="fw-bold mb-2">Bautizos</h5>
+          <p class="text-muted small mb-0">Arreglos tiernos y delicados para celebrar este momento sagrado.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="card service-card p-4 text-center">
+          <div class="service-icon-wrap" style="background:#FAEEDA;">🎉</div>
+          <h5 class="fw-bold mb-2">Cumpleaños</h5>
+          <p class="text-muted small mb-0">Temáticas únicas y coloridas para niños, jóvenes y adultos.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="card service-card p-4 text-center">
+          <div class="service-icon-wrap" style="background:#FBEAF0;">🌸</div>
+          <h5 class="fw-bold mb-2">Revelación de sexo</h5>
+          <p class="text-muted small mb-0">Sorpresas creativas en rosa o azul para este momento tan especial.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="card service-card p-4 text-center">
+          <div class="service-icon-wrap" style="background:#E1F5EE;">🍼</div>
+          <h5 class="fw-bold mb-2">Baby Shower</h5>
+          <p class="text-muted small mb-0">Ambientes llenos de ternura para celebrar la llegada del bebé.</p>
+        </div>
+      </div>
+      <div class="col-sm-6 col-lg-4">
+        <div class="card service-card p-4 text-center">
+          <div class="service-icon-wrap" style="background:#FAEEDA;">🎓</div>
+          <h5 class="fw-bold mb-2">Graduaciones</h5>
+          <p class="text-muted small mb-0">Celebra el logro académico con decoración sofisticada y memorable.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="why-section py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-tag teal">Nuestras ventajas</span>
+      <h2 class="section-title">¿Por qué elegirnos?</h2>
+      <p class="section-sub">Más de 5 años creando experiencias únicas</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-6">
+        <div class="why-card p-4 d-flex gap-3 align-items-start">
+          <div class="why-num">01</div>
+          <div>
+            <h6 class="fw-bold mb-1">Diseño 100% personalizado</h6>
+            <p class="text-muted small mb-0">Cada evento es único. Adaptamos cada decoración a tu visión y estilo personal.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="why-card p-4 d-flex gap-3 align-items-start">
+          <div class="why-num">02</div>
+          <div>
+            <h6 class="fw-bold mb-1">Materiales de calidad premium</h6>
+            <p class="text-muted small mb-0">Usamos materiales de primera que garantizan una decoración impecable.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="why-card p-4 d-flex gap-3 align-items-start">
+          <div class="why-num">03</div>
+          <div>
+            <h6 class="fw-bold mb-1">Entrega y montaje puntual</h6>
+            <p class="text-muted small mb-0">Cumplimos con los tiempos acordados para que todo esté listo a tiempo.</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="why-card p-4 d-flex gap-3 align-items-start">
+          <div class="why-num">04</div>
+          <div>
+            <h6 class="fw-bold mb-1">Precios accesibles</h6>
+            <p class="text-muted small mb-0">Paquetes flexibles para todos los presupuestos sin sacrificar calidad.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="py-5" id="galeria">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-tag">Portafolio</span>
+      <h2 class="section-title">Galería de eventos</h2>
+      <p class="section-sub">Una muestra de nuestra magia</p>
+    </div>
+    <div class="row g-3">
+      <div class="col-6 col-md-3">
+        <div class="gallery-item" style="background:linear-gradient(135deg,#FBEAF0,#F4C0D1);">💍</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="gallery-item" style="background:linear-gradient(135deg,#E1F5EE,#9FE1CB);">👼</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="gallery-item" style="background:linear-gradient(135deg,#FAEEDA,#FAC775);">🎉</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="gallery-item" style="background:linear-gradient(135deg,#EEEDFE,#CECBF6);">🌸</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="gallery-item" style="background:linear-gradient(135deg,#FBEAF0,#ED93B1);">🍼</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="gallery-item" style="background:linear-gradient(135deg,#E1F5EE,#5DCAA5);">🎓</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="gallery-item" style="background:linear-gradient(135deg,#FAEEDA,#EF9F27);">🎈</div>
+      </div>
+      <div class="col-6 col-md-3">
+        <div class="gallery-item" style="background:linear-gradient(135deg,#EEEDFE,#AFA9EC);">🎁</div>
+      </div>
+    </div>
+    <p class="text-center mt-4 text-muted small">
+      Síguenos en Instagram para ver más:
+      <a href="#" style="color:var(--pink); font-weight:700;">@yoimaeventos</a>
+    </p>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="py-5 bg-light" id="testimonios">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-tag teal">Clientes felices</span>
+      <h2 class="section-title">Lo que dicen de nosotros</h2>
+      <p class="section-sub">Familias felices, momentos inolvidables</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="card testimonial-card p-4 h-100">
+          <div class="stars mb-2">★★★★★</div>
+          <p class="text-muted small mb-3">"Decoraron el bautizo de mi hija de manera hermosa. Todo quedó perfecto, superó mis expectativas."</p>
+          <div class="d-flex align-items-center gap-2 mt-auto">
+            <div class="avatar-circle" style="background:#FBEAF0; color:var(--pink);">MG</div>
+            <div>
+              <div class="fw-bold small">María González</div>
+              <div class="small" style="color:var(--teal);">Bautizo · Santo Domingo</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card testimonial-card p-4 h-100">
+          <div class="stars mb-2">★★★★★</div>
+          <p class="text-muted small mb-3">"La decoración de nuestra boda fue increíble. Cada detalle reflejó exactamente lo que soñamos."</p>
+          <div class="d-flex align-items-center gap-2 mt-auto">
+            <div class="avatar-circle" style="background:#E1F5EE; color:var(--teal);">CR</div>
+            <div>
+              <div class="fw-bold small">Carlos y Paola Reyes</div>
+              <div class="small" style="color:var(--teal);">Boda · Santiago</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card testimonial-card p-4 h-100">
+          <div class="stars mb-2">★★★★★</div>
+          <p class="text-muted small mb-3">"El cumpleaños de mi niño quedó espectacular. Los globos, la mesa dulce, ¡todo perfecto!"</p>
+          <div class="d-flex align-items-center gap-2 mt-auto">
+            <div class="avatar-circle" style="background:#FAEEDA; color:var(--gold);">AM</div>
+            <div>
+              <div class="fw-bold small">Ana Martínez</div>
+              <div class="small" style="color:var(--teal);">Cumpleaños infantil</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="py-5" id="contacto">
+  <div class="container">
+    <div class="contact-section p-4 p-md-5">
+      <div class="row g-5 align-items-center">
+        <div class="col-lg-5">
+          <span class="section-tag">Contáctanos</span>
+          <h2 class="section-title mb-3">¡Hablemos de tu evento!</h2>
+          <p class="text-muted mb-4">Cuéntanos qué quieres celebrar y te preparamos una propuesta personalizada sin compromiso.</p>
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="contact-icon-wrap" style="background:#FBEAF0; color:var(--pink);">
+              <i class="bi bi-telephone-fill"></i>
+            </div>
+            <span> (809) 564-5772</span>
+          </div>
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <div class="contact-icon-wrap" style="background:#E1F5EE; color:var(--teal);">
+              <i class="bi bi-envelope-fill"></i>
+            </div>
+            <span>yoimaeventos@gmail.com</span>
+          </div>
+          <div class="d-flex align-items-center gap-3">
+            <div class="contact-icon-wrap" style="background:#FAEEDA; color:var(--gold);">
+              <i class="bi bi-geo-alt-fill"></i>
+            </div>
+            <span>Santo Domingo, República Dominicana</span>
+          </div>
+        </div>
+        <div class="col-lg-7">
+          <div class="row g-3">
+            <div class="col-12">
+              <input type="text" class="form-control" placeholder="Tu nombre completo" />
+            </div>
+            <div class="col-md-6">
+              <input type="tel" class="form-control" placeholder="WhatsApp / Teléfono" />
+            </div>
+            <div class="col-md-6">
+              <input type="date" class="form-control" />
+            </div>
+            <div class="col-12">
+              <select class="form-select">
+                <option value="" disabled selected>Tipo de evento</option>
+                <option>Boda</option>
+                <option>Bautizo</option>
+                <option>Cumpleaños</option>
+                <option>Revelación de sexo</option>
+                <option>Baby shower</option>
+                <option>Graduación</option>
+                <option>Otro</option>
+              </select>
+            </div>
+            <div class="col-12">
+              <textarea class="form-control" rows="3" placeholder="Cuéntanos más sobre tu evento..."></textarea>
+            </div>
+            <div class="col-12">
+              <button class="btn-submit" onclick="alert('¡Gracias! En breve nos comunicamos contigo.')">
+                <i class="bi bi-send me-2"></i>Enviar solicitud
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="py-5">
+  <div class="container">
+    <div class="row g-4 mb-4">
+      <div class="col-md-4">
+        <div class="footer-brand mb-2">
+          <span class="pink">Yoima</span> <span class="teal">Eventos</span>
+        </div>
+        <p class="small" style="color:#aaa; line-height:1.8;">
+          Decoración de eventos con amor y creatividad. Hacemos tus momentos especiales inolvidables en República Dominicana.
+        </p>
+        <div class="d-flex gap-2 mt-3">
+          <a href="#" class="social-btn"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="social-btn"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="social-btn"><i class="bi bi-whatsapp"></i></a>
+          <a href="#" class="social-btn"><i class="bi bi-tiktok"></i></a>
+        </div>
+      </div>
+      <div class="col-6 col-md-2 offset-md-1">
+        <h6 class="fw-bold text-white mb-3">Servicios</h6>
+        <ul class="list-unstyled small">
+          <li class="mb-2"><a href="#">Bodas</a></li>
+          <li class="mb-2"><a href="#">Bautizos</a></li>
+          <li class="mb-2"><a href="#">Cumpleaños</a></li>
+          <li class="mb-2"><a href="#">Revelación de sexo</a></li>
+          <li class="mb-2"><a href="#">Baby shower</a></li>
+        </ul>
+      </div>
+      <div class="col-6 col-md-2">
+        <h6 class="fw-bold text-white mb-3">Empresa</h6>
+        <ul class="list-unstyled small">
+          <li class="mb-2"><a href="#">Nosotros</a></li>
+          <li class="mb-2"><a href="#">Galería</a></li>
+          <li class="mb-2"><a href="#">Reseñas</a></li>
+          <li class="mb-2"><a href="#">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="col-md-3">
+        <h6 class="fw-bold text-white mb-3">Contacto</h6>
+        <p class="small mb-2" style="color:#aaa;"><i class="bi bi-telephone me-2" style="color:var(--pink);"></i>+1 (809) 000-0000</p>
+        <p class="small mb-2" style="color:#aaa;"><i class="bi bi-envelope me-2" style="color:var(--pink);"></i>yoimaeventos@gmail.com</p>
+        <p class="small" style="color:#aaa;"><i class="bi bi-geo-alt me-2" style="color:var(--pink);"></i>Santo Domingo, RD</p>
+      </div>
+    </div>
+    <hr style="border-color:rgba(255,255,255,.1);" />
+    <p class="small text-center mb-0" style="color:#777;">
+      © 2025 <span style="color:var(--pink); font-weight:700;">Yoima Eventos</span> — Todos los derechos reservados. Hecho con ❤️ en Santo Domingo, RD.
+    </p>
+  </div>
+</footer>
+
+<!-- WhatsApp Float -->
+<a href="https://wa.me/18090000000" class="wa-float" target="_blank" title="Escríbenos por WhatsApp">
+  <i class="bi bi-whatsapp"></i>
+</a>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
